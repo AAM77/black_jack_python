@@ -1,0 +1,100 @@
+TWO PLAYERS:
+  - Computer Dealer
+  - Player
+
+GAME SETUP:
+
+- Human player has a bank roll (account).
+- Both players have a total sum
+- Human player chooses to place a bet or not
+- Both players try to get as close to 21 as possible
+
+# At Start of Game #
+- Human player chooses to place a bet or not
+    - If there is a bet: True
+    - If no bet: False
+
+
+- Dealer receives two cards.
+  - One pace up
+  - One face down
+
+- Player receives two cards.
+  - Both face up
+
+
+
+# Human Player goes first #
+
+HUMAN PLAYER TURN:
+
+1) Both Players can choose to:
+    - Hit (receive another card)
+    - Stay (Stop receiving cards)
+
+2) At the end of the turn, the player's sum is calculated
+    - If the player goes over 21: busts (loses game)
+
+
+3) Then, the dealer (computer) goes:
+
+COMPUTER DEALER TURN:
+
+1) If the player is still under 21:
+    - computer hits until the player or dealer busts
+
+2) If the player busts:
+    - player loses the game
+    - player loses bet
+    - player loses the bet amount
+
+3) If the computer busts:
+    - computer loses the game
+    - player doubles their bet money
+    - this amount is added to the player's bank roll
+
+4) If the computer beats the player without busts
+    - player loses the game
+    - player loses the bet
+    - player loses the bet amount
+
+5) If the computer loses without busts
+    - computer loses the game
+    - player doubles their bet money
+    - this amount is added to the player's bank roll
+
+
+SOME SPECIAL RULES:
+- Face Cards (Jack Queen King): have value of 11
+- Aces can count as either 1 or 11.
+  - If a player gets an ace, can choose 1 or 11
+  - Randomize this choice for the computer
+
+
+
+
+
+
+DECK CONTENTS:
+numbers = [
+'ace',
+'two',
+'three',
+'four',
+'five',
+'six',
+'seven',
+'eight',
+'nine',
+'ten',
+'jack',
+'queen',
+'king'
+]
+
+suits = [
+'clubs',
+'diamonds',
+'hearts',
+'spades'
+]
