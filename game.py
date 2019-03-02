@@ -1,6 +1,6 @@
 class Game():
 
-    numbers = [
+    cards  = [
     'ace',
     'two',
     'three',
@@ -22,3 +22,11 @@ class Game():
     'hearts',
     'spades'
     ]
+
+    # Generates a new deck per game
+    def generate_deck():
+        deck = []
+        for suit in suits:
+            for card in cards:
+                deck.append((suit,card))
+        return deck
