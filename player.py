@@ -12,3 +12,14 @@ class Player():
         except:
             print("Invalid entry. Must be a number.")
             self.place_bet()
+
+
+    def hit_or_stay(self):
+        choice = input("Do you want to hit or stay?").lower()
+        if choice == 'hit':
+            return True
+        elif choice == 'stay':
+            return False
+        else:
+            print("Invalid entry.")
+            self.hit_or_stay()
