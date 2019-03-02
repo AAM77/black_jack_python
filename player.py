@@ -30,14 +30,25 @@ class Player():
             print("Invalid entry.")
             self.hit_or_stay()
 
-    # Allows the user to choose if s/he wants
-    # Ace to be a 1 or 11
-    ## !!!!!!!!!!!!!!! NEED TO FIX !!!!!!!!!!!!!!!!
-    def one_or_eleven(self):
+    # Checks if a value is an integer
+    def type_int(self,val):
         try:
-            ace_value = int(input("Do you want ace to be a 1 or 11? "))
-            if (ace_value == 1) or (ace_value == 11):
-                return ace_value
+            int(val)
         except:
-            print("Invalid entry. Must be a 1 or 11.")
+            print("Invalid entry.")
+        else:
+            return val
+
+    # Checks if the input is a one or eleven
+    def one_or_eleven(self):
+        ace_value = input("Do you want to use it as a 1 or 11?")
+        if self.type_int(ace_value):
+            ace = int(ace_value)
+            if (ace == 1) or (ace == 11):
+                return ace
+            else:
+                print("Must be a 1 or 11.")
+                self.one_or_eleven()
+        else:
+            print("Must be a 1 or 11.")
             self.one_or_eleven()
