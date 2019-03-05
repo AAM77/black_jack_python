@@ -3,7 +3,6 @@ class Player():
     def __init__(self, bank_roll):
         self.bank_roll = bank_roll
 
-
     # Display's the user's current bank_roll
     def display_bank_roll(self):
         print(self.bank_roll)
