@@ -56,8 +56,8 @@ class Game():
 
 
     # Deal a card from the top of the deck
-    # def deal_card(self):
-        # deal a card to the current player
+    def deal_card(self):
+        return self.deck.pop(0)
 
 
     # Display the current table
@@ -81,8 +81,9 @@ class Game():
         # ''')
 
     # Shuffles the deck
-    # def shuffle_deck(self)
-        # return a shuffled deck
+    def shuffle_deck(self):
+        from random import shuffle
+        return shuffle(self.deck)
 
 
     # Checks the sum of the current_player's cards
