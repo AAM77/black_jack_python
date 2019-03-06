@@ -3,6 +3,9 @@ class Game():
     # need a method to track players
     # need a method to track current player
 
+    players = ['Player', 'Dealer']
+
+
     cards  = [
     'ace',
     'two',
@@ -27,7 +30,10 @@ class Game():
     ]
 
     def __init__(self):
-        self.game_deck = generate_deck
+        self.player_cards = []
+        self.dealer_cards = []
+        self.deck = generate_deck
+        self.shuffle_deck()
         self.deal_cards()
 
     # Generates a new deck per game
@@ -40,19 +46,11 @@ class Game():
 
 
     # Deals out two cards to each player
-    # def deal_cards(self):
-        # player_cards = []
-        # dealer_cards = []
-        # remove a card from the top of the deck and deal it to player 1
-        # (append it to player_cards)
-        # remove a card from the top of the deck and deal it to player 2
-        # (append it to dealer_cards)
-        # remove a card from the top of the deck and deal it to player 1
-        # (append it to player_cards)
-        # remove a card from the top of the deck and deal it to player 2
-        # (append it to dealer_cards)
-        # self.player_cards = player_cards
-        # self.dealer_cards = dealer_cards
+    def deal_cards(self):
+        self.player_cards.append(self.deck.pop(0))
+        self.dealer_cards.append(self.deck.pop(0))
+        self.player_cards.append(self.deck.pop(0))
+        self.dealer_cards.append(self.deck.pop(0))
 
 
     # Deal a card from the top of the deck
@@ -60,25 +58,31 @@ class Game():
         return self.deck.pop(0)
 
 
-    # Display the current table
-    # def display_table(self):
-        # print('''
-        # ||||||||||||||||||||||||||||||
-        # ||           DEALER         ||
-        # ||         __     __        ||
-        # ||        |  |   |  |       ||
-        # ||        |__|   |__|       ||
-        # ||                          ||
-        # ||                          ||
-        # ||                          ||
-        # ||           PLAYER         ||
-        # ||         __     __        ||
-        # ||        |  |   |  |       ||
-        # ||        |__|   |__|       ||
-        # ||                          ||
-        # ||||||||||||||||||||||||||||||
-        #
-        # ''')
+    Display the current table
+    def display_table(self):
+        dc1 = self.dealer_cards[0]
+        dc2 = self.dealer_cards[1]
+
+        pc1 = self.player_cards[0]
+        pc2 = self.player_cards[1]
+        print(f'''
+
+        ||||||||||||||||||||||||||||||
+        ||           DEALER         ||
+        ||                          ||
+        ||     |{dc1}|   |{dc2}|    ||
+        ||                          ||
+        ||                          ||
+        ||                          ||
+        ||                          ||
+        ||           PLAYER         ||
+        ||                          ||
+        ||     |{pc1}|   |{pc2}|    ||
+        ||                          ||
+        ||                          ||
+        ||||||||||||||||||||||||||||||
+
+        ''')
 
     # Shuffles the deck
     def shuffle_deck(self):
@@ -87,10 +91,13 @@ class Game():
 
 
     # Checks the sum of the current_player's cards
-    # def check_sum(self):
-        # if the sum is greater than 21:
-            # the current player loses
-        # else if the sum is 21:
+    def check_sum(self):
+        if sum(self.player_cards) > 21:
+            print("Player loses")
+        elif sum(self.player_cards) == 21:
             # go to the next turn
-        # else if the sum is less than 21:
+            pass
+        elif sum(self.player_cards) < 21:
             # ask the player if s/he would like to hit or stay
+            print("Do you want to hit or stay?")
+            pass
