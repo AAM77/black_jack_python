@@ -6,21 +6,21 @@ class Game():
     players = ['Player', 'Dealer']
 
 
-    cards  = [
-    'ace',
-    'two',
-    'three',
-    'four',
-    'five',
-    'six',
-    'seven',
-    'eight',
-    'nine',
-    'ten',
-    'jack',
-    'queen',
-    'king'
-    ]
+    cards  = {
+    'ace':1,
+    'two':2,
+    'three':3,
+    'four':4,
+    'five':5,
+    'six':6,
+    'seven':7,
+    'eight':8,
+    'nine':9,
+    'ten':10,
+    'jack':10,
+    'queen':10,
+    'king':10
+    }
 
     suits = [
     'clubs',
@@ -32,17 +32,24 @@ class Game():
     def __init__(self):
         self.player_cards = []
         self.dealer_cards = []
-        self.deck = generate_deck
-        self.shuffle_deck()
+        self.deck = self.generate_deck()
         self.deal_cards()
+        self.display_table()
 
     # Generates a new deck per game
-    def generate_deck():
+    def generate_deck(self):
         deck = []
-        for suit in suits:
-            for card in cards:
-                deck.append((suit,card))
+        for suit in Game.suits:
+            for key,value in Game.cards.items():
+                deck.append((key,value,suit))
+
+        self.shuffle_deck(deck)
         return deck
+
+    # Shuffles the deck
+    def shuffle_deck(self, deck):
+        from random import shuffle
+        return shuffle(deck)
 
 
     # Deals out two cards to each player
@@ -58,7 +65,7 @@ class Game():
         return self.deck.pop(0)
 
 
-    Display the current table
+    # Display the current table
     def display_table(self):
         dc1 = self.dealer_cards[0]
         dc2 = self.dealer_cards[1]
@@ -67,31 +74,33 @@ class Game():
         pc2 = self.player_cards[1]
         print(f'''
 
-        ||||||||||||||||||||||||||||||
-        ||           DEALER         ||
-        ||                          ||
-        ||     |{dc1}|   |{dc2}|    ||
-        ||                          ||
-        ||                          ||
-        ||                          ||
-        ||                          ||
-        ||           PLAYER         ||
-        ||                          ||
-        ||     |{pc1}|   |{pc2}|    ||
-        ||                          ||
-        ||                          ||
-        ||||||||||||||||||||||||||||||
+        |||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+                                   DEALER
+
+                                |{dc1[0]} of {dc1[2]}|
+                                |{dc2[0]} of {dc2[2]}|
+
+
+
+
+                                    PLAYER
+                                      
+                                |{pc1[0]} of {pc1[2]}|
+                                |{pc2[0]} of {pc2[2]}|
+
+
+        |||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
 
         ''')
 
-    # Shuffles the deck
-    def shuffle_deck(self):
-        from random import shuffle
-        return shuffle(self.deck)
+
 
 
     # Checks the sum of the current_player's cards
     def check_sum(self):
+
         if sum(self.player_cards) > 21:
             print("Player loses")
         elif sum(self.player_cards) == 21:
