@@ -95,18 +95,34 @@ class Game():
 
         ''')
 
+    def cards_total(self, cards):
+        total = 0
+        for card in cards:
+            if card[0] == 'ace':
+                # CHECK IF CURRENT PLAYER IS DEALER OR PLAYER
+                    # IF DEALER:
+                        # Randomly choose 1 or 11
+                    # ELSE:
+                        # trigger ask player to input 1 or 11
+                        # then, total += int(user_input)
+                total += int(input("Do you want Ace to be 1 or 11?"))
+            else:
+                total += card[1]
+        return total
+
 
 
 
     # Checks the sum of the current_player's cards
     def check_sum(self):
 
-        if sum(self.player_cards) > 21:
+
+        if cards_total(self.player_cards) > 21:
             print("Player loses")
-        elif sum(self.player_cards) == 21:
+        elif cards_total(self.player_cards) == 21:
             # go to the next turn
             pass
-        elif sum(self.player_cards) < 21:
+        elif cards_total(self.player_cards) < 21:
             # ask the player if s/he would like to hit or stay
             print("Do you want to hit or stay?")
             pass
