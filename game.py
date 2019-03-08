@@ -1,10 +1,9 @@
 class Game():
 
-    # need a method to track players
-    # need a method to track current player
+    # THIS IS A ONE-PLAYER BLACKJACK GAME
+    # WITH AND AUTOMATED DEALER
 
-    players = ['Player', 'Dealer']
-
+    players = ['Dealer', 'Player']
 
     cards  = {
     'ace':1,
@@ -29,12 +28,30 @@ class Game():
     'spades'
     ]
 
+
+
     def __init__(self):
-        self.player_cards = []
-        self.dealer_cards = []
+        self.default_values()
         self.deck = self.generate_deck()
         self.deal_cards()
         self.display_table()
+
+    # Sets the default values for a game
+    def default_values(self):
+        self.round_count = 1
+        self.turn_count = 1
+        self.player_cards = []
+        self.dealer_cards = []
+
+    # determines the current player
+    def current_player(self):
+        if self.turn_count%2 == 0:
+            # dealer's turn
+            return self.players[0]
+        else:
+            # player one's turn
+            return self.players[1]
+
 
     # Generates a new deck per game
     def generate_deck(self):
@@ -45,6 +62,7 @@ class Game():
 
         self.shuffle_deck(deck)
         return deck
+
 
     # Shuffles the deck
     def shuffle_deck(self, deck):
@@ -58,11 +76,6 @@ class Game():
         self.dealer_cards.append(self.deck.pop(0))
         self.player_cards.append(self.deck.pop(0))
         self.dealer_cards.append(self.deck.pop(0))
-
-
-    # Deal a card from the top of the deck
-    def deal_card(self):
-        return self.deck.pop(0)
 
 
     # Display the current table
@@ -95,6 +108,16 @@ class Game():
 
         ''')
 
+
+    # Deal a card from the top of the deck
+    def deal_card(self):
+        return self.deck.pop(0)
+
+    ##########################
+    # WORK ON THE FOLLOWING: #
+    ##########################
+
+    # Determines the total value of a player's cards
     def cards_total(self, cards):
         total = 0
         for card in cards:
@@ -111,12 +134,8 @@ class Game():
         return total
 
 
-
-
     # Checks the sum of the current_player's cards
     def check_sum(self):
-
-
         if cards_total(self.player_cards) > 21:
             print("Player loses")
         elif cards_total(self.player_cards) == 21:
@@ -126,3 +145,29 @@ class Game():
             # ask the player if s/he would like to hit or stay
             print("Do you want to hit or stay?")
             pass
+
+
+    def take_turn(self):
+        if self.current_player() == players[0]:
+            if cards_total(self.dealer_cards) < 17:
+                self.dealer_cards.append(deal_card())
+            # This is the end of this round.
+            # Check the total of the dealer's cards
+            # Compare the total to the player's total
+            # if dealer doesn't bust, the higher total wins
+            self.check_sum()
+
+        elif self.current_player() == players[1]:
+            # ask player if s/hew wants to 'hit' or 'stay'
+                    # if hit:
+                        # draw a card()
+            pass
+
+
+        # (2) check total
+                # if > 21: lose
+                # else:
+                    # next_turn
+
+        # (3) compare total to other player
+                # run
