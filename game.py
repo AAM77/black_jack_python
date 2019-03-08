@@ -84,7 +84,7 @@ class Game():
 
 
                                     PLAYER
-                                      
+
                                 |{pc1[0]} of {pc1[2]}|
                                 |{pc2[0]} of {pc2[2]}|
 
